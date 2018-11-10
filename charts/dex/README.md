@@ -28,7 +28,7 @@ image:
 
 service:
   type: ClusterIP
-  port: 5556
+  port: 30001
 
 tls:
   # Specify whether a TLS secret for Dex should be created
@@ -57,11 +57,11 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - dex.example.com
+    - dex.dex.svc.cluster.local:30001
   tls: []
-  #  - secretName: dex.example.com
+  #  - secretName: dex.dex.svc.cluster.local:30001
   #    hosts:
-  #      - dex.example.com
+  #      - dex.dex.svc.cluster.local:30001
 
 rbac:
   # Specifies whether RBAC resources should be created
@@ -97,7 +97,7 @@ affinity: {}
 # Certainly secret fields can use environment variables
 #
 config: |-
-  issuer: https://dex.example.com
+  issuer: https://dex.dex.svc.cluster.local:30001
 
   storage:
     type: kubernetes
@@ -105,14 +105,14 @@ config: |-
       inCluster: true
 
   web:
-    http: 0.0.0.0:5556
+    http: 0.0.0.0:30001
 
     # If enabled, be sure to configure tls settings above, or use a tool
     # such as let-encrypt to manage the certs.
     # Currently this chart does not support both http and https, and the port
-    # is fixed to 5556
+    # is fixed to 30001
     #
-    # https: 0.0.0.0:5556
+    # https: 0.0.0.0:30001
     # tlsCert: /etc/dex/tls/tls.crt
     # tlsKey: /etc/dex/tls/tls.key
 
@@ -146,7 +146,7 @@ config: |-
     config:
       clientID: $GITHUB_CLIENT_ID
       clientSecret: $GITHUB_CLIENT_SECRET
-      redirectURI: https://dex.example.com/callback
+      redirectURI: https://dex.dex.svc.cluster.local:30001/callback
       # 'orgs' can be used to map groups from Github
       # https://github.com/coreos/dex/blob/master/Documentation/connectors/github.md
       #orgs:
@@ -165,7 +165,7 @@ config: |-
       issuer: https://accounts.google.com
       clientID: $GOOGLE_CLIENT_ID
       clientSecret: $GOOGLE_CLIENT_SECRET
-      redirectURI: https://dex.example.com/callback
+      redirectURI: https://dex.dex.svc.cluster.local:30001/callback
       # Google supports whitelisting allowed domains when using G Suite
       # (Google Apps). The following field can be set to a list of domains
       # that can log in:
@@ -183,7 +183,7 @@ config: |-
     config:
       clientID: $MICROSOFT_APPLICATION_ID
       clientSecret: $MICROSOFT_CLIENT_SECRET
-      redirectURI: https://dex.example.com/callback
+      redirectURI: https://dex.dex.svc.cluster.local:30001/callback
       # Restrict access to one tenant
       # tenant: <tenant name> or <tenant uuid>
       # Restrict access to certain groups
@@ -226,7 +226,7 @@ config: |-
     name: "my-cluster"
     secret: "pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok"
     redirectURIs:
-    - https://login.example.com/callback/my-cluster
+    - http://dex-k8s-authenticator.dex.svc.cluster.local:30002/callback/my-cluster
   
   enablePasswordDB: True
   staticPasswords:

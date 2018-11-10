@@ -18,11 +18,11 @@ helm inspect values charts/dex-k8s-authenticator > dex-k8s-authenticator.yaml
 ```
 Edit the values files for your environment and requirements (`dex.yaml` and `dex-k8s-authenticator.yaml`). 
 
-Create the DNS names for your `dex` (e.g. 'dex.example.com') and `dex-k8s-authenticator` (e.g. 'login.example.com')
+Create the DNS names for your `dex` (e.g. 'dex.dex.svc.cluster.local:30001') and `dex-k8s-authenticator` (e.g. 'login.example.com')
 pointed at the ingress controller you are using. Be sure to enable HTTPS. You can install 
 [`cert-manager`](https://github.com/jetstack/cert-manager) to automatically issue Lets Encrypt certificates.
 
-You also need to configure each Kubernetes cluster to use `dex` at e.g. 'dex.example.com' by [setting the OIDC parameters
+You also need to configure each Kubernetes cluster to use `dex` at e.g. 'dex.dex.svc.cluster.local:30001' by [setting the OIDC parameters
 for the Kubernetes API server](https://kubernetes.io/docs/admin/authentication/#openid-connect-tokens). 
 This is easy using [`kube-aws` installer](https://github.com/kubernetes-incubator/kube-aws/tree/master/contrib/dex).
 
@@ -30,4 +30,4 @@ This is easy using [`kube-aws` installer](https://github.com/kubernetes-incubato
 helm install --namespace dex --values dex.yaml charts/dex
 helm install --namespace dex --values dex-k8s-authenticator charts/dex-k8s-authenticator
 ```
-Navigate to https://login.example.com and follow the instructions to authenticate using `dex` and configure `kubectl`.
+Navigate to http://dex-k8s-authenticator.dex.svc.cluster.local:30002 and follow the instructions to authenticate using `dex` and configure `kubectl`.

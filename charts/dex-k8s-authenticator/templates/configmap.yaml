@@ -11,7 +11,7 @@ metadata:
 data:
   config.yaml: |-
     {{- with .Values.dexK8sAuthenticator }}
-    listen: http://0.0.0.0:{{ default "5555" .port }}
+    listen: http://0.0.0.0:{{ default "30002" .port }}
     web_path_prefix: {{ default "/" .web_path_prefix }}
     debug: {{ default "false" .debug }}
     {{- if .logoUrl }}

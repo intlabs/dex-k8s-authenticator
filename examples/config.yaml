@@ -9,7 +9,7 @@ clusters:
     # Redirect Url pointing to dex-k8s-authenticator callback for this cluster
     # This should be configured in Dex as part of the staticClients 
     # redirectURIs option
-    redirect_uri: http://127.0.0.1:5555/callback/example-cluster
+    redirect_uri: http://127.0.0.1:30002/callback/example-cluster
 
     # Client Secret - should match value in Dex
     client_secret: ZXhhbXBsZS1hcHAtc2VjcmV0
@@ -18,7 +18,7 @@ clusters:
     client_id: example-cluster-client-id
     
     # Dex Issuer - Must be resolvable
-    issuer:  http://127.0.0.1:5556
+    issuer:  http://127.0.0.1:30001
 
     # Url to k8s API endpoint - used in WebUI instructions for generating
     # kubeconfig
@@ -65,7 +65,7 @@ clusters:
 
 
 # Which address to listen on (set to https if tls configured)
-listen: http://127.0.0.1:5555
+listen: http://127.0.0.1:30002
 
 # A path-prefix from which to serve requests and assets 
 web_path_prefix: /

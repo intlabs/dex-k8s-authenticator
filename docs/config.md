@@ -54,10 +54,10 @@ clusters:
   - name: example-cluster
     short_description: "Example Cluster"
     description: "Example Cluster Long Description..."
-    redirect_uri: http://127.0.0.1:5555/dex-auth/callback/example-cluster
+    redirect_uri: http://127.0.0.1:30002/dex-auth/callback/example-cluster
     client_secret: ...
     client_id: example-cluster-client-id
-    issuer:  http://127.0.0.1:5556
+    issuer:  http://127.0.0.1:30001
     k8s_master_uri: https://your-k8s-master.cluster
 
 # A path-prefix from which to serve requests and assets

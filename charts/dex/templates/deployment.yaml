@@ -41,11 +41,9 @@ spec:
           items:
           - key: config.yaml
             path: config.yaml
-{{- if .Values.tls.create }}
       - name: tls
         secret:
-          secretName: {{ template "dex.fullname" $ }}-tls
-{{- end }}
+          secretName: dex-tls
       serviceAccountName: {{ template "dex.serviceAccountName" . }}
       containers:
       - name: {{ .Chart.Name }}
@@ -62,31 +60,25 @@ spec:
         {{- end }}
         ports:
         - name: http
-          containerPort: 5556
+          containerPort: 30001
           protocol: TCP
         livenessProbe:
           httpGet:
             path: {{ template "dex.healthCheckPath" . }}
-            port: 5556
-          {{- if .Values.tls.create }}
+            port: 30001
             scheme: HTTPS
-          {{- end }}
         readinessProbe:
           httpGet:
             path: {{ template "dex.healthCheckPath" . }}
-            port: 5556
-          {{- if .Values.tls.create }}
+            port: 30001
             scheme: HTTPS
-          {{- end }}
           initialDelaySeconds: 5
           timeoutSeconds: 1
         volumeMounts:
         - name: config
           mountPath: /etc/dex
-{{- if .Values.tls.create }}
         - name: tls
           mountPath: /etc/dex/tls
-{{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
     {{- with .Values.nodeSelector }}

@@ -1,10 +1,10 @@
-issuer: http://127.0.0.1:5556
+issuer: http://127.0.0.1:30001
 storage:
   type: sqlite3
   config:
     file: examples/dex.db
 web:
-   http: 0.0.0.0:5556
+   http: 0.0.0.0:30001
 
 expiry:
   signingKeys: "10m"
@@ -28,7 +28,7 @@ staticClients:
   name: Kubernetes Dev Cluster
   secret: ZXhhbXBsZS1hcHAtc2VjcmV0 
   redirectURIs:
-    - http://127.0.0.1:5555/callback/example-cluster
+    - http://127.0.0.1:30002/callback/example-cluster
 
 enablePasswordDB: True
 

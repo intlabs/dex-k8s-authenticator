@@ -37,7 +37,7 @@ The configuration file requires the following:
 
 
 ```yaml
-listen: https://127.0.0.1:5555
+listen: https://127.0.0.1:30002
 tls_cert: /path/to/dex-client.crt
 tls_key: /path/to/dex-client.key
 ```

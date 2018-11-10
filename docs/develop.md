@@ -25,7 +25,7 @@ Start it with using the provided `./examples/dex-server-config-dev.yaml`
 
     ./bin/dex-k8s-authenticator --config ./examples/config.yaml
 
-* Browse to http://localhost:5555
+* Browse to http://localhost:30002
 * Click 'Example Cluster'
 * Click 'Log in with Email'
 * Login with `admin@example.com` followed by the password `password`

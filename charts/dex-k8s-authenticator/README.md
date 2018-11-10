@@ -23,7 +23,7 @@ image:
   pullPolicy: Always
 
 dexK8sAuthenticator:
-  port: 5555
+  port: 30002
   debug: false
   web_path_prefix: /
   #logoUrl: http://<path-to-your-logo.png>
@@ -35,15 +35,15 @@ dexK8sAuthenticator:
     short_description: "My Cluster"
     description: "Example Cluster Long Description..."
     client_secret: pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok
-    issuer: https://dex.example.com
-    k8s_master_uri: https://my-cluster.example.com
+    issuer: https://dex.dex.svc.cluster.local:30001
+    k8s_master_uri: https://kubernetes.default.svc.cluster.local:6443
     client_id: my-cluster
-    redirect_uri: https://login.example.com/callback/my-cluster
+    redirect_uri: http://dex-k8s-authenticator.dex.svc.cluster.local:30002/callback/my-cluster
     k8s_ca_uri: https://url-to-your-ca.crt
 
 service:
   type: ClusterIP
-  port: 5555
+  port: 30002
 
 ingress:
   enabled: false
